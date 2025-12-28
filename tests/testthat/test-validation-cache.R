@@ -10,7 +10,6 @@
 
 describe("Validation Cache Initialization", {
   it("initializes empty validation cache", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     cache <- initialize_validation_cache()
 
@@ -21,7 +20,6 @@ describe("Validation Cache Initialization", {
   })
 
   it("sets up global validation cache", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     # Clear existing cache if any
     if (exists(".validation_cache", envir = .GlobalEnv)) {
@@ -36,7 +34,6 @@ describe("Validation Cache Initialization", {
   })
 
   it("gets existing global cache", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     # Setup cache first
     if (!exists(".validation_cache", envir = .GlobalEnv)) {
@@ -53,9 +50,6 @@ describe("Validation Cache Initialization", {
 
 describe("Validation Cache Storage and Retrieval", {
   it("stores and retrieves validator function", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
-    source(file.path(getwd(), "../../R/validation_dsl_parser.R"), local = TRUE)
-    source(file.path(getwd(), "../../R/validation_dsl_codegen.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -77,7 +71,6 @@ describe("Validation Cache Storage and Retrieval", {
   })
 
   it("returns NULL for non-existent field validator", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
 
@@ -86,7 +79,6 @@ describe("Validation Cache Storage and Retrieval", {
   })
 
   it("retrieves original DSL rule text", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -98,7 +90,6 @@ describe("Validation Cache Storage and Retrieval", {
   })
 
   it("checks if field has validation rule", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -110,7 +101,6 @@ describe("Validation Cache Storage and Retrieval", {
   })
 
   it("returns all fields with validation rules", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     # Clear global cache to start fresh
     if (exists(".validation_cache", envir = .GlobalEnv)) {
@@ -134,7 +124,6 @@ describe("Validation Cache Storage and Retrieval", {
 
 describe("Field Validation Execution", {
   it("validates field with cached validator", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -157,7 +146,6 @@ describe("Field Validation Execution", {
   })
 
   it("returns TRUE for field without validation rule", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
 
@@ -167,7 +155,6 @@ describe("Field Validation Execution", {
   })
 
   it("validates field with cross-field reference", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -194,7 +181,6 @@ describe("Field Validation Execution", {
   })
 
   it("handles validation errors gracefully", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -213,7 +199,6 @@ describe("Field Validation Execution", {
 
 describe("Form Validation", {
   it("validates entire form successfully", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -241,7 +226,6 @@ describe("Form Validation", {
   })
 
   it("validates form with validation errors", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -268,7 +252,6 @@ describe("Form Validation", {
   })
 
   it("validates mixed valid and invalid fields", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -295,7 +278,6 @@ describe("Form Validation", {
   })
 
   it("validates form with no rules", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     # Clear cache
     if (exists(".validation_cache", envir = .GlobalEnv)) {
@@ -317,7 +299,6 @@ describe("Form Validation", {
 
 describe("Cache Management", {
   it("clears validation cache", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -337,7 +318,6 @@ describe("Cache Management", {
   })
 
   it("returns cache statistics", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -356,7 +336,6 @@ describe("Cache Management", {
   })
 
   it("tracks last compiled time", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -373,9 +352,6 @@ describe("Cache Management", {
 
 describe("Clinical Trial Validation Scenarios", {
   it("validates age-based conditional validation", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
-    source(file.path(getwd(), "../../R/validation_dsl_parser.R"), local = TRUE)
-    source(file.path(getwd(), "../../R/validation_dsl_codegen.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()
@@ -407,7 +383,6 @@ describe("Clinical Trial Validation Scenarios", {
   })
 
   it("validates ADHD screening form with multiple rules", {
-    source(file.path(getwd(), "../../R/validation_cache.R"), local = TRUE)
 
     setup_global_validation_cache()
     cache <- get_validation_cache()

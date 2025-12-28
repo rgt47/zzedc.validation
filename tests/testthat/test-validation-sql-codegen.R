@@ -10,7 +10,6 @@
 
 describe("SQL Code Generation Basics", {
   it("generates SQL for between validation", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "between",
@@ -28,7 +27,6 @@ describe("SQL Code Generation Basics", {
   })
 
   it("generates SQL for comparison validation", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "comparison",
@@ -46,7 +44,6 @@ describe("SQL Code Generation Basics", {
   })
 
   it("generates SQL for in list validation", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "in_list",
@@ -63,7 +60,6 @@ describe("SQL Code Generation Basics", {
   })
 
   it("generates SQL for required validation", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(type = "required", field = "enrollment_date")
 
@@ -74,7 +70,6 @@ describe("SQL Code Generation Basics", {
   })
 
   it("generates SQL for logical AND", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "and",
@@ -88,7 +83,6 @@ describe("SQL Code Generation Basics", {
   })
 
   it("generates SQL for logical OR", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "or",
@@ -104,7 +98,6 @@ describe("SQL Code Generation Basics", {
 
 describe("Cross-Visit SQL Queries", {
   it("generates cross-visit consistency query", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_cross_visit_query(
       field_name = "weight",
@@ -120,7 +113,6 @@ describe("Cross-Visit SQL Queries", {
   })
 
   it("generates multi-visit comparison query", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_cross_visit_query(
       field_name = "weight",
@@ -134,7 +126,6 @@ describe("Cross-Visit SQL Queries", {
 
 describe("Statistical Analysis Queries", {
   it("generates outlier detection query", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_outlier_detection_query(
       field_name = "blood_pressure",
@@ -147,7 +138,6 @@ describe("Statistical Analysis Queries", {
   })
 
   it("generates missing data pattern query", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_missing_data_query(
       required_field = "visit_date",
@@ -162,7 +152,6 @@ describe("Statistical Analysis Queries", {
 
 describe("Index Recommendations", {
   it("recommends index for subject_id queries", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- "SELECT * FROM edc_data WHERE subject_id = 'SUBJ001'"
 
@@ -172,7 +161,6 @@ describe("Index Recommendations", {
   })
 
   it("recommends composite index for subject-visit", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- "SELECT * FROM edc_data WHERE subject_id = ? AND visit = 'baseline'"
 
@@ -182,7 +170,6 @@ describe("Index Recommendations", {
   })
 
   it("recommends index for date range queries", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- "SELECT * FROM edc_data WHERE entry_date >= '2024-01-01'"
 
@@ -194,7 +181,6 @@ describe("Index Recommendations", {
 
 describe("Context Detection", {
   it("detects real-time context for simple rules", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     rules <- c(
       "between 40 and 200",
@@ -210,7 +196,6 @@ describe("Context Detection", {
   })
 
   it("detects batch context for cross-visit rules", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     batch_rules <- c(
       "cross_visit weight within 10% of baseline",
@@ -228,7 +213,6 @@ describe("Context Detection", {
 
 describe("SQL Generation from Full AST", {
   it("generates SQL from complete between rule", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     # Create mock AST manually
     ast <- list(
@@ -247,7 +231,6 @@ describe("SQL Generation from Full AST", {
   })
 
   it("generates SQL from comparison rule", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "comparison",
@@ -263,7 +246,6 @@ describe("SQL Generation from Full AST", {
   })
 
   it("generates SQL from required rule", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "required",
@@ -279,21 +261,18 @@ describe("SQL Generation from Full AST", {
 
 describe("Batch Rule Compilation", {
   it("detects context for real-time rules", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     context <- detect_validation_context("between 40 and 200")
     expect_equal(context, "real-time")
   })
 
   it("detects context for batch rules", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     context <- detect_validation_context("cross_visit weight consistency")
     expect_equal(context, "batch")
   })
 
   it("handles empty rule gracefully", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     context <- detect_validation_context("")
     expect_equal(context, "real-time")  # Default to real-time
@@ -302,7 +281,6 @@ describe("Batch Rule Compilation", {
 
 describe("SQL Safety and Correctness", {
   it("properly escapes string values in SQL", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "comparison",
@@ -317,7 +295,6 @@ describe("SQL Safety and Correctness", {
   })
 
   it("uses parameter placeholders for numeric values", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(
       type = "between",
@@ -334,7 +311,6 @@ describe("SQL Safety and Correctness", {
   })
 
   it("handles NULL values in cross-visit queries", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_cross_visit_query(
       field_name = "weight",
@@ -348,7 +324,6 @@ describe("SQL Safety and Correctness", {
 
 describe("Query Complexity and Performance", {
   it("generates simple WHERE clause for simple rules", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     ast <- list(type = "required", field = "test")
     sql <- generate_sql_where_clause(ast, "test")
@@ -358,7 +333,6 @@ describe("Query Complexity and Performance", {
   })
 
   it("generates optimized cross-visit queries", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_cross_visit_query(
       field_name = "weight",
@@ -371,7 +345,6 @@ describe("Query Complexity and Performance", {
   })
 
   it("uses window functions for efficiency", {
-    source(file.path(getwd(), "../../R/validation_dsl_sql_codegen.R"), local = TRUE)
 
     sql <- generate_outlier_detection_query("value", num_std_dev = 3)
 

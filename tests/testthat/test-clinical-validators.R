@@ -9,7 +9,6 @@
 
 describe("Clinical Date Utilities", {
   it("adds days to a date", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     base_date <- as.Date("2024-01-15")
     result <- add_days(base_date, 30)
@@ -17,7 +16,6 @@ describe("Clinical Date Utilities", {
   })
 
   it("subtracts days from a date", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     base_date <- as.Date("2024-01-15")
     result <- add_days(base_date, -7)
@@ -25,7 +23,6 @@ describe("Clinical Date Utilities", {
   })
 
   it("adds weeks to a date", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     base_date <- as.Date("2024-01-15")
     result <- add_weeks(base_date, 4)
@@ -33,7 +30,6 @@ describe("Clinical Date Utilities", {
   })
 
   it("calculates days between two dates", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     date1 <- as.Date("2024-01-01")
     date2 <- as.Date("2024-01-31")
@@ -42,7 +38,6 @@ describe("Clinical Date Utilities", {
   })
 
   it("checks if date is within N days of reference", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     check_date <- as.Date("2024-01-15")
     reference <- as.Date("2024-01-01")
@@ -57,7 +52,6 @@ describe("Clinical Date Utilities", {
 
 describe("Clinical Visit Utilities", {
   it("gets visit sequence number", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     expect_equal(get_visit_number("screening"), -1)
     expect_equal(get_visit_number("baseline"), 0)
@@ -67,7 +61,6 @@ describe("Clinical Visit Utilities", {
   })
 
   it("checks if visit is in a list", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     expect_true(visit_in_list("baseline", c("baseline", "week4", "week8")))
     expect_true(visit_in_list("BASELINE", c("baseline", "week4")))
@@ -75,7 +68,6 @@ describe("Clinical Visit Utilities", {
   })
 
   it("validates visit timing windows", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     baseline_date <- as.Date("2024-01-01")
 
@@ -90,7 +82,6 @@ describe("Clinical Visit Utilities", {
 
 describe("Clinical Score Utilities", {
   it("calculates ADHD rating scale total", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     inattention_scores <- c(2, 1, 2, 3, 2, 1, 2, 1, 2)  # Sum: 16
     hyperactivity_scores <- c(1, 2, 2, 2, 1, 2, 1, 2, 1) # Sum: 14
@@ -100,7 +91,6 @@ describe("Clinical Score Utilities", {
   })
 
   it("validates score is in range", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     # ADHD total ranges 0-54
     expect_true(score_in_range(30, 0, 54))
@@ -112,7 +102,6 @@ describe("Clinical Score Utilities", {
 
 describe("Clinical Validation Integration", {
   it("validates complete screening visit data", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     baseline_date <- as.Date("2024-01-01")
     visit_date <- as.Date("2024-01-28")
@@ -127,7 +116,6 @@ describe("Clinical Validation Integration", {
   })
 
   it("validates ADHD score for a visit", {
-    source(file.path(getwd(), "../../R/clinical_validators.R"), local = TRUE)
 
     # Get ADHD scores for visit
     adhd_scores <- c(2, 1, 2, 3, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1)
