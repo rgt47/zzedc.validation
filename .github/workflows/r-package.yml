@@ -51,6 +51,8 @@ jobs:
           restore-keys: r-pkgs-
 
       - name: Install dependencies
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'testthat', 'knitr', 'rmarkdown'), repos = 'https://cloud.r-project.org')"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
