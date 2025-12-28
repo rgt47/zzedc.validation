@@ -1,4 +1,4 @@
 library(testthat)
-library(zzedc)
+library(zzedc.validation)
 
-test_check("zzedc")
+test_check("zzedc.validation")
