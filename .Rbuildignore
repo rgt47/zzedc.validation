@@ -1,0 +1,10 @@
+^\.Rproj\.user$
+^\.Rproj$
+^\.github$
+^README\.md$
+^\.gitignore$
+^\.vimrc$
+^\.zshrc_docker$
+^Makefile$
+^bundles\.yaml$
+^config\.yaml$

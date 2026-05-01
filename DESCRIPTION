@@ -1,0 +1,36 @@
+Package: zzedc.validation
+Type: Package
+Title: Validation DSL for Clinical Trial Data
+Version: 1.0.0
+Authors@R:
+    person("Ronald G. Thomas", email = "rgthomas@ucsd.edu", role = c("aut", "cre"))
+Author: Ronald G. Thomas [aut, cre]
+Maintainer: Ronald G. Thomas <rgthomas@ucsd.edu>
+Description: A domain-specific language (DSL) for writing clinical trial data validation rules.
+    Supports real-time field-level validation and batch quality control checks.
+    Features include cross-field validation, conditional logic, date arithmetic, and
+    clinical trial-specific patterns. Can compile to both R (for real-time Shiny apps)
+    and SQL (for nightly batch QC).
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends:
+    R (>= 4.0.0)
+Imports:
+    methods,
+    config (>= 0.3.1),
+    yaml (>= 2.3.0),
+    RSQLite (>= 2.2.0),
+    dplyr (>= 1.0.0),
+    lubridate (>= 1.8.0),
+    stringr (>= 1.4.0),
+    digest (>= 0.6.0)
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+URL: https://github.com/rgt47/zzedc
+BugReports: https://github.com/rgt47/zzedc/issues
+Config/testthat/edition: 3
+VignetteBuilder: knitr
